@@ -30,7 +30,6 @@
     .wrap { max-width:640px; margin:0 auto; }
 
     .title { font-size:18px; font-weight:500; color:var(--t1); margin-bottom:1.75rem; }
-
     .score-hero { margin-bottom:1.5rem; }
     .score-main { display:flex; align-items:flex-end; gap:6px; line-height:1; margin-bottom:4px; }
     .score-val { font-size:80px; font-weight:500; color:var(--pink); letter-spacing:-3px; line-height:1; }
@@ -55,9 +54,8 @@
     .field { display:flex; flex-direction:column; gap:4px; }
     .field-label { font-size:11px; color:var(--t2); }
     .inp-row { display:flex; align-items:center; gap:4px; }
-    input.inp { flex:1; min-width:0; border:none; border-bottom:1.5px solid var(--bd2); background:transparent; font-family:inherit; font-size:16px; font-weight:500; color:var(--t1); padding:4px 0; outline:none; }
+    input.inp { flex:1;min-width:0;border:none;border-bottom:1.5px solid var(--bd2);background:transparent;font-family:inherit;font-size:16px;font-weight:500;color:var(--t1);padding:4px 0;outline:none; }
     input.inp:focus { border-bottom-color:var(--pink); }
-    input.inp.sm { font-size:13px; }
     .unit { font-size:11px; color:var(--t2); }
     .unit-sm { font-size:10px; color:var(--t2); }
     .calc-hint { font-size:11px; color:var(--t2); min-height:14px; margin-top:2px; }
@@ -65,7 +63,7 @@
     .sub-lbl { font-size:12px; color:var(--t2); }
     .sub-val { font-size:14px; font-weight:500; color:var(--t1); }
 
-    .save-btn { width:100%; padding:11px; font-family:inherit; font-size:12px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; border:1.5px solid var(--pink); border-radius:var(--r-md); background:transparent; color:var(--pink); cursor:pointer; margin-top:1.25rem; transition:background 0.15s,color 0.15s; }
+    .save-btn { width:100%;padding:11px;font-family:inherit;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;border:1.5px solid var(--pink);border-radius:var(--r-md);background:transparent;color:var(--pink);cursor:pointer;margin-top:1.25rem;transition:background 0.15s,color 0.15s; }
     .save-btn:hover { background:var(--pink); color:#fff; }
     .save-btn:active { transform:scale(0.99); }
 
@@ -73,25 +71,48 @@
     .hist-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
     .clear-btn { font-size:11px; color:var(--dn); background:none; border:none; cursor:pointer; font-family:inherit; opacity:0.7; }
     .clear-btn:hover { opacity:1; }
-    .hist-item { display:grid; grid-template-columns:1fr auto auto auto; gap:10px; align-items:center; padding:7px 0; border-bottom:0.5px solid var(--bd); }
+    .hist-item { display:grid; grid-template-columns:auto 1fr auto auto auto; gap:10px; align-items:center; padding:8px 6px; border-bottom:0.5px solid var(--bd); cursor:pointer; border-radius:var(--r-md); transition:background 0.1s; }
     .hist-item:last-child { border-bottom:none; }
-    .hist-date { font-size:11px; color:var(--t2); }
-    .hist-score { font-size:14px; font-weight:500; color:var(--t1); text-align:right; }
+    .hist-item:hover { background:var(--surface2); }
+    .hist-date { font-size:11px; color:var(--t2); white-space:nowrap; }
+    .hist-asset { font-size:11px; color:var(--t2); text-align:right; }
+    .hist-score { font-size:14px; font-weight:500; color:var(--t1); text-align:right; white-space:nowrap; }
     .hist-delta { font-size:11px; font-weight:500; min-width:56px; text-align:right; }
-    .del-btn { background:none; border:none; cursor:pointer; font-size:13px; color:var(--t2); padding:0; opacity:0.4; }
+    .del-btn { background:none;border:none;cursor:pointer;font-size:13px;color:var(--t2);padding:0;opacity:0.4; }
     .del-btn:hover { opacity:1; color:var(--dn); }
 
     .month-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px 1rem; }
     .year-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 2rem; }
     .mini-field { display:flex; flex-direction:column; gap:3px; }
     .mini-label { font-size:10px; color:var(--t2); }
-    input.mini-inp { width:100%; border:none; border-bottom:1px solid var(--bd); background:transparent; font-family:inherit; font-size:13px; font-weight:500; text-align:right; color:var(--t1); padding:3px 0; outline:none; }
+    input.mini-inp { width:100%;border:none;border-bottom:1px solid var(--bd);background:transparent;font-family:inherit;font-size:13px;font-weight:500;text-align:right;color:var(--t1);padding:3px 0;outline:none; }
     input.mini-inp:focus { border-bottom-color:var(--pink); }
+
+    /* 모달 */
+    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:100; align-items:center; justify-content:center; padding:1rem; }
+    .modal-overlay.open { display:flex; }
+    .modal { background:var(--surface); border-radius:var(--r-lg); padding:1.5rem; width:100%; max-width:480px; max-height:90vh; overflow-y:auto; position:relative; }
+    .modal-close { position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:18px; cursor:pointer; color:var(--t2); }
+    .modal-close:hover { color:var(--t1); }
+    .modal-date { font-size:11px; color:var(--t2); margin-bottom:0.5rem; letter-spacing:0.04em; }
+    .modal-score-row { display:flex; align-items:baseline; gap:6px; margin-bottom:1rem; }
+    .modal-score { font-size:56px; font-weight:500; color:var(--pink); letter-spacing:-2px; line-height:1; }
+    .modal-pt { font-size:20px; color:var(--pink); padding-bottom:6px; }
+    .modal-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:1rem; }
+    .modal-stat { background:var(--surface2); border-radius:var(--r-md); padding:8px 10px; }
+    .modal-stat-label { font-size:10px; color:var(--t2); margin-bottom:3px; }
+    .modal-stat-val { font-size:13px; font-weight:500; color:var(--t1); }
+    .modal-sec { font-size:10px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--t2); margin:0.875rem 0 6px; }
+    .modal-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:0 1rem; }
+    .modal-grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
+    .modal-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:0.5px solid var(--bd); }
+    .modal-row:last-child { border-bottom:none; }
+    .modal-row-lbl { color:var(--t2); }
+    .modal-row-val { font-weight:500; color:var(--t1); }
   </style>
 </head>
 <body>
 <div class="wrap">
-
   <div class="title">💰 돈 성적표</div>
 
   <div class="score-hero">
@@ -138,28 +159,50 @@
   </div>
 
   <hr class="divider">
-
   <div class="sec">📆 2026 월별 수입</div>
   <div class="month-grid" id="month-grid"></div>
   <div class="subtotal" style="margin-top:10px;"><span class="sub-lbl">2026 소계</span><span class="sub-val" id="m-total">0원</span></div>
 
   <hr class="divider">
-
   <div class="sec">📅 2020–2025 연간 수입</div>
   <div class="year-grid" id="year-grid"></div>
   <div class="subtotal" style="margin-top:10px;"><span class="sub-lbl">2020–2025 소계</span><span class="sub-val" id="base-total">—</span></div>
+</div>
 
+<!-- 스냅샷 모달 -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div class="modal-date" id="modal-date"></div>
+    <div class="modal-score-row">
+      <span class="modal-score" id="modal-score"></span>
+      <span class="modal-pt">점</span>
+    </div>
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="modal-stat-label">📈 누적 수입</div><div class="modal-stat-val" id="modal-income"></div></div>
+      <div class="modal-stat"><div class="modal-stat-label">🏦 실질 자산</div><div class="modal-stat-val" id="modal-asset"></div></div>
+      <div class="modal-stat"><div class="modal-stat-label">📊 보존율</div><div class="modal-stat-val" id="modal-ratio"></div></div>
+    </div>
+    <div class="modal-sec">📆 2026 월별 수입</div>
+    <div class="modal-grid4" id="modal-months"></div>
+    <div class="modal-sec">📅 연간 수입</div>
+    <div class="modal-grid2" id="modal-years"></div>
+  </div>
 </div>
 
 <script>
 const YEAR_DATA=[
-  {key:'y2020',label:'2020 · 1년차',val:30000000},{key:'y2021',label:'2021 · 2년차',val:43390000},
-  {key:'y2022',label:'2022 · 3년차',val:40390000},{key:'y2023',label:'2023 · 4년차',val:44090000},
-  {key:'y2024',label:'2024 · 5년차',val:59900000},{key:'y2025',label:'2025 · 6년차',val:71400000},
+  {key:'y2020',label:'2020 · 1년차',val:27287098},
+  {key:'y2021',label:'2021 · 2년차',val:43399996},
+  {key:'y2022',label:'2022 · 3년차',val:40399996},
+  {key:'y2023',label:'2023 · 4년차',val:44099996},
+  {key:'y2024',label:'2024 · 5년차',val:82493095},
+  {key:'y2025',label:'2025 · 6년차',val:71396181},
 ];
+const MONTH_DEFAULTS=[4704505,4916824,5803803,4162881,0,0,0,0,0,0,0,0];
 const MONTHS=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
-const STORE_KEY='money_card_income',HIST_KEY='money_card_history';
-let history=[],currentScore=null;
+const STORE_KEY='money_card_income', HIST_KEY='money_card_history';
+let history=[],currentScore=null,currentAsset=null;
 
 function fmt(n){return Math.round(n).toLocaleString('ko-KR')+'원';}
 function parseRaw(s){return parseFloat((s||'').replace(/[^0-9.]/g,''))||0;}
@@ -174,7 +217,8 @@ document.getElementById('year-grid').innerHTML=YEAR_DATA.map((d,i)=>{
 }).join('');
 
 document.getElementById('month-grid').innerHTML=MONTHS.map((m,i)=>{
-  const key=`m2026_${i}`,sv=saved[key],disp=sv>0?Number(sv).toLocaleString('ko-KR'):'';
+  const key=`m2026_${i}`,sv=saved[key];
+  const disp=sv!==undefined?(sv>0?Number(sv).toLocaleString('ko-KR'):''):(MONTH_DEFAULTS[i]>0?MONTH_DEFAULTS[i].toLocaleString('ko-KR'):'');
   return `<div class="mini-field"><div class="mini-label">${m}</div><div style="display:flex;align-items:center;gap:3px;"><input type="text" class="mini-inp month-inp" data-key="${key}" placeholder="0" value="${disp}" inputmode="numeric"><span class="unit-sm">원</span></div></div>`;
 }).join('');
 
@@ -195,8 +239,34 @@ document.querySelectorAll('[data-year],.month-inp').forEach(inp=>ac(inp,inp.data
 ac(document.getElementById('asset-inp'),null);
 ac(document.getElementById('couple-inp'),null);
 
-function deleteEntry(i){history.splice(i,1);try{localStorage.setItem(HIST_KEY,JSON.stringify(history));}catch(e){}renderHistory();updateDelta();}
-function clearAll(){history=[];try{localStorage.setItem(HIST_KEY,JSON.stringify(history));}catch(e){}renderHistory();updateDelta();}
+function openModal(h){
+  document.getElementById('modal-date').textContent=h.date+' 기준';
+  document.getElementById('modal-score').textContent=h.score.toFixed(1);
+  document.getElementById('modal-income').textContent=fmt(h.totalIncome||0);
+  document.getElementById('modal-asset').textContent=fmt(h.asset||0);
+  document.getElementById('modal-ratio').textContent=h.score.toFixed(1)+'%';
+  document.getElementById('modal-months').innerHTML=(h.months||[]).map((v,i)=>
+    `<div class="modal-row"><span class="modal-row-lbl">${MONTHS[i]}</span><span class="modal-row-val">${v>0?fmt(v):'—'}</span></div>`
+  ).join('');
+  document.getElementById('modal-years').innerHTML=(h.years||[]).map((v,j)=>
+    `<div class="modal-row"><span class="modal-row-lbl">${YEAR_DATA[j].label}</span><span class="modal-row-val">${fmt(v)}</span></div>`
+  ).join('');
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalDirect();}
+function closeModalDirect(){document.getElementById('modal-overlay').classList.remove('open');}
+
+function deleteEntry(i,e){
+  e.stopPropagation();
+  history.splice(i,1);
+  try{localStorage.setItem(HIST_KEY,JSON.stringify(history));}catch(e){}
+  renderHistory();updateDelta();
+}
+function clearAll(){
+  history=[];
+  try{localStorage.setItem(HIST_KEY,JSON.stringify(history));}catch(e){}
+  renderHistory();updateDelta();
+}
 
 function renderHistory(){
   const sec=document.getElementById('hist-section'),rows=document.getElementById('hist-rows');
@@ -207,7 +277,13 @@ function renderHistory(){
     let dh=`<span class="hist-delta" style="color:var(--t2);">—</span>`;
     if(prev){const d=h.score-prev.score,c=d>0?'var(--up)':d<0?'var(--dn)':'var(--t2)',ar=d>0?'▲':d<0?'▼':'─';
       dh=`<span class="hist-delta" style="color:${c};">${ar} ${d>=0?'+':''}${d.toFixed(1)}</span>`;}
-    return `<div class="hist-item"><span class="hist-date">${h.date}</span><span class="hist-score">${h.score.toFixed(1)}점</span>${dh}<button class="del-btn" onclick="deleteEntry(${i})">✕</button></div>`;
+    return `<div class="hist-item" onclick="openModal(history[${i}])">
+      <span class="hist-date">${h.date}</span>
+      <span class="hist-asset">${fmt(h.asset)}</span>
+      <span class="hist-score">${h.score.toFixed(1)}점</span>
+      ${dh}
+      <button class="del-btn" onclick="deleteEntry(${i},event)">✕</button>
+    </div>`;
   }).join('');
 }
 
@@ -221,9 +297,15 @@ function updateDelta(){
 }
 
 function saveScore(){
-  if(currentScore===null)return;
+  if(currentScore===null||currentAsset===null)return;
   const now=new Date(),p=n=>String(n).padStart(2,'0');
-  history.push({score:currentScore,date:`${now.getFullYear()}.${p(now.getMonth()+1)}.${p(now.getDate())} ${p(now.getHours())}:${p(now.getMinutes())}`});
+  const months=[...document.querySelectorAll('.month-inp')].map(i=>parseRaw(i.value));
+  const years=[...document.querySelectorAll('[data-year]')].map(i=>parseRaw(i.value));
+  const totalIncome=years.reduce((a,b)=>a+b,0)+months.reduce((a,b)=>a+b,0);
+  history.push({
+    score:currentScore,asset:currentAsset,totalIncome,months,years,
+    date:`${now.getFullYear()}.${p(now.getMonth()+1)}.${p(now.getDate())} ${p(now.getHours())}:${p(now.getMinutes())}`
+  });
   try{localStorage.setItem(HIST_KEY,JSON.stringify(history));}catch(e){}
   renderHistory();updateDelta();
 }
@@ -242,12 +324,13 @@ function calc(){
   document.getElementById('stat-asset').textContent=ar>0?fmt(ar):'—';
   const sv=document.getElementById('score-val');
   if(!ar||!ti){
-    currentScore=null;document.getElementById('stat-ratio').textContent='—';
+    currentScore=null;currentAsset=null;
+    document.getElementById('stat-ratio').textContent='—';
     sv.textContent='—';sv.className='score-val empty';
     document.getElementById('score-pt').style.display='none';
     document.getElementById('score-bar').style.width='0%';return;
   }
-  const sc=(ar/ti)*100;currentScore=sc;
+  const sc=(ar/ti)*100;currentScore=sc;currentAsset=ar;
   document.getElementById('stat-ratio').textContent=sc.toFixed(1)+'%';
   sv.textContent=sc.toFixed(1);sv.className='score-val';
   document.getElementById('score-pt').style.display='';
