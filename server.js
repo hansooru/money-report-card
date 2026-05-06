@@ -4,6 +4,7 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const PASSWORD = process.env.PASSWORD || '1234';
+console.log('PASSWORD:', PASSWORD);
 const DATA_FILE = path.join(__dirname, 'data.json');
 
 app.use(express.json());
